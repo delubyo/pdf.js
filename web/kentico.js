@@ -1,6 +1,8 @@
 function onOpenFileClick(event) {
   event.preventDefault();
 
+  console.log('select assets');
+
   CustomElement.selectAssets({ fileType: 'all', allowMultiple: false })
   .then(([ asset ]) => CustomElement.getAssetDetails([ asset.id ]))
   .then(([ assetDetails ]) => openPDFAsset(assetDetails))
@@ -55,6 +57,7 @@ function initCustomElement() {
       setup(width, height);
       updateDisabled(element.disabled);
       updateSize();
+      initKenticoAssetSelector();
     });
     // React when the disabled state changes (e.g. when publishing the item)
     CustomElement.onDisabledChanged(updateDisabled);
