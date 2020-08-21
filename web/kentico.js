@@ -10,6 +10,7 @@ function onOpenFileClick(event) {
 
 function initKenticoAssetSelector() {
   const button = document.getElementById('kenticoOpenFile');
+  console.log({ button });
   button.addEventListener('click', onOpenFileClick);
 }
 
@@ -57,7 +58,6 @@ function initCustomElement() {
       setup(width, height);
       updateDisabled(element.disabled);
       updateSize();
-      initKenticoAssetSelector();
     });
     // React when the disabled state changes (e.g. when publishing the item)
     CustomElement.onDisabledChanged(updateDisabled);
