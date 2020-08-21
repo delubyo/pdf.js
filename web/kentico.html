@@ -26,6 +26,7 @@
     </script>
 
 <script src="viewer.js" type="module-shim"></script>
+<script src="kentico.js" type="module-shim"></script>
 <!--#endif-->
 
   <!-- Custom element CSS styles -->
@@ -228,7 +229,11 @@
                 <span data-l10n-id="presentation_mode_label">Presentation Mode</span>
               </button>
 
-              <button id="openFile" class="toolbarButton openFile hiddenLargeView" title="Open File" tabindex="32" data-l10n-id="open_file">
+              <button hidden id="openFile" class="toolbarButton openFile hiddenLargeView" title="Open File" tabindex="32" data-l10n-id="open_file">
+                <span data-l10n-id="open_file_label">Open</span>
+              </button>
+
+              <button id="kenticoOpenFile" class="toolbarButton openFile hiddenLargeView" title="Open File" tabindex="32" data-l10n-id="open_file">
                 <span data-l10n-id="open_file_label">Open</span>
               </button>
 
