@@ -35,6 +35,12 @@ function setup(width, height) {
   $("#outerContainer").css("width", width).css("height", height);
 }
 
+function initializePDFViewer(initialValue) {
+  document.addEventListener('webviewerloaded', () => {
+    console.log({ PDFViewerApplication, initialValue });
+  });
+}
+
 function initCustomElement() {
   try {
     // Custom handlers
@@ -43,8 +49,6 @@ function initCustomElement() {
     CustomElement.init((element, _context) => {
       var width = null; // 600;
       var height = 400;
-
-      console.log({ element, PDFViewerApplication });
 
       if (element.config) {
         if (element.config.width) width = element.config.width;
@@ -55,6 +59,8 @@ function initCustomElement() {
       setup(width, height);
       updateDisabled(element.disabled);
       updateSize();
+
+      initializePDFViewer(element.value);
     });
     // React when the disabled state changes (e.g. when publishing the item)
     CustomElement.onDisabledChanged(updateDisabled);
