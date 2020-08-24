@@ -52,7 +52,9 @@ function setup(width, height) {
 }
 
 function initializePDFViewer(initialValue) {
+  console.log({ initialValue });
   if ( 'PDFViewerApplication' in window && PDFViewerApplication.initialized ) {
+    console.log('PDFViewerApplication.initialized');
     openPDFAsset(initialValue);
   }
   else {
