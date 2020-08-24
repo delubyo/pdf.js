@@ -1,8 +1,6 @@
 function onOpenFileClick(event) {
   event.preventDefault();
 
-  console.log('select assets');
-
   CustomElement.selectAssets({ fileType: 'all', allowMultiple: false })
   .then(([ asset ]) => CustomElement.getAssetDetails([ asset.id ]))
   .then(([ assetDetails ]) => openPDFAsset(assetDetails))
@@ -10,16 +8,12 @@ function onOpenFileClick(event) {
 
 function initKenticoAssetSelector() {
   const button = document.getElementById('kenticoOpenFile');
-  console.log({ button });
   button.addEventListener('click', onOpenFileClick);
 }
 
 function openPDFAsset(pdfAsset) {
   PDFViewerApplication.open(pdfAsset.url);
-}
-
-function onAssetSelect(assetReference) {
-  console.log({ assetReference });
+  CustomElement.setValue(pdfAsset.url);
 }
 
 function updateSize() {
@@ -50,7 +44,7 @@ function initCustomElement() {
       var width = null; // 600;
       var height = 400;
 
-      console.log({ element });
+      console.log({ element, PDFViewerApplication });
 
       if (element.config) {
         if (element.config.width) width = element.config.width;
