@@ -43,12 +43,17 @@ function setup(width, height) {
 }
 
 function initializePDFViewer(initialValue) {
-  document.addEventListener('webviewerloaded', () => {
-    console.log('webviewerloaded', { initialValue });
-    if ( initialValue ) {
-      openPDFAsset(initialValue);
-    }
-  });
+  if ( 'PDFViewerApplication' in window && PDFViewerApplication.initialized ) {
+    openPDFAsset(initialValue);
+  }
+  else {
+    document.addEventListener('webviewerloaded', () => {
+      console.log('webviewerloaded', { initialValue });
+      if ( initialValue ) {
+        openPDFAsset(initialValue);
+      }
+    });
+  }
 }
 
 function initCustomElement() {
