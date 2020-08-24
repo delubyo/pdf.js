@@ -15,7 +15,10 @@ function initKenticoAssetSelector() {
 function openPDFAsset(pdfAsset) {
   updateLoading(true);
 
-  return PDFViewerApplication.open(pdfAsset).then(() => pdfAsset);
+  return PDFViewerApplication.open(pdfAsset).then(() => {
+    updateLoading(false);
+    return pdfAsset;
+  });
 }
 
 function onPDFAssetOpened(pdfFile) {
