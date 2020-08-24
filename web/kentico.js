@@ -47,13 +47,16 @@ function initCustomElement() {
     initKenticoAssetSelector();
     // Custom Element
     CustomElement.init((element, _context) => {
-      var width = 600;
+      var width = null; // 600;
       var height = 400;
+
+      console.log({ element });
 
       if (element.config) {
         if (element.config.width) width = element.config.width;
         if (element.config.height) height = element.config.height;
       }
+
       // Setup with initial value and disabled state
       setup(width, height);
       updateDisabled(element.disabled);
