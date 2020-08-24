@@ -47,6 +47,18 @@
 
     .disabled_overlay {
       position: fixed;
+      background-color: white;
+      z-index: 10;
+      cursor: not-allowed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.8;
+    }
+
+    .loading_overlay {
+      position: fixed;
       background-color: #777;
       z-index: 10;
       cursor: not-allowed;
@@ -66,6 +78,8 @@
 
 <body>
   <div class="disabled_overlay"></div>
+  <div class="loading_overlay"></div>
+
   <!-- Custom element HTML -->
   <input id="editor" hidden />
 

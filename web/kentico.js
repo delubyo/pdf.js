@@ -13,14 +13,14 @@ function initKenticoAssetSelector() {
 }
 
 function openPDFAsset(pdfAsset) {
-  updateDisabled(true);
+  updateLoading(true);
 
   return PDFViewerApplication.open(pdfAsset).then(() => pdfAsset);
 }
 
 function onPDFAssetOpened(pdfFile) {
   CustomElement.setValue(pdfFile);
-  updateDisabled(false);
+  updateLoading(false);
 }
 
 function updateSize() {
@@ -35,6 +35,15 @@ function updateDisabled(disabled) {
   }
   else {
     $('.disabled_overlay').hide();
+  }
+}
+
+function updateLoading(loading) {
+  if (loading) {
+    $('.loading_overlay').show();
+  }
+  else {
+    $('.loading_overlay').hide();
   }
 }
 
@@ -72,10 +81,8 @@ function initCustomElement() {
 
       // Setup with initial value and disabled state
       setup(width, height);
-      updateDisabled(false);
+      updateDisabled(element.disabled);
       updateSize();
-
-      console.log({ element });
 
       initializePDFViewer(element.value);
     });
