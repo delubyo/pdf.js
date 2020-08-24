@@ -60,7 +60,7 @@ function initCustomElement() {
 
       // Setup with initial value and disabled state
       setup(width, height);
-      // updateDisabled(element.disabled);
+      updateDisabled(false);
       updateSize();
 
       initializePDFViewer(element.value);
