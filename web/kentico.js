@@ -34,10 +34,10 @@ function updateSize() {
 
 function updateDisabled(disabled) {
   if (disabled) {
-    $('.disabled_overlay').show();
+    document.body.classList.add('disabled');
   }
   else {
-    $('.disabled_overlay').hide();
+    document.body.classList.remove('disabled');
   }
 }
 
