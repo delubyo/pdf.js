@@ -12,8 +12,15 @@ function initKenticoAssetSelector() {
 }
 
 function openPDFAsset(pdfAsset) {
-  PDFViewerApplication.open(pdfAsset.url);
-  CustomElement.setValue(pdfAsset.url);
+  updateDisabled(true);
+
+  PDFViewerApplication.open(pdfAsset.url)
+    .then(() => onPDFAssetOpened(pdfAsset.url));
+}
+
+function onPDFAssetOpened(pdfFile) {
+  CustomElement.setValue(pdfFile);
+  updateDisabled(false);
 }
 
 function updateSize() {
@@ -55,8 +62,6 @@ function initCustomElement() {
         if (element.config.width) width = element.config.width;
         if (element.config.height) height = element.config.height;
       }
-
-      console.log({ element });
 
       // Setup with initial value and disabled state
       setup(width, height);
