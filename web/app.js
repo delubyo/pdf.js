@@ -526,7 +526,11 @@ const PDFViewerApplication = {
   },
 
   run(config) {
-    this.initialize(config).then(webViewerInitialized);
+    this.initialize(config).then(webViewerInitialized).then(() => {
+      if ( 'onPDFViewerInitialized' in window ) {
+        window.onPDFViewerInitialized();
+      }
+    });
   },
 
   get initialized() {

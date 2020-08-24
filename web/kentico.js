@@ -51,15 +51,20 @@ function setup(width, height) {
   $("#outerContainer").css("width", width).css("height", height);
 }
 
+function onPDFViewerInitialized() {
+  const pdfViewerInitializedEvent = new CustomEvent('pdfViewerInitialized');
+  window.pdfViewerInitialized = true;
+  window.dispatchEvent(pdfViewerInitializedEvent);
+}
+
 function initializePDFViewer(initialValue) {
-  console.log({ initialValue });
-  if ( 'PDFViewerApplication' in window && PDFViewerApplication.initialized ) {
-    console.log('PDFViewerApplication.initialized');
+  if ( 'pdfViewerInitialized' in window ) {
+    console.log('pdfViewerInitialized');
     openPDFAsset(initialValue);
   }
   else {
-    document.addEventListener('webviewerloaded', () => {
-      console.log('webviewerloaded', { initialValue });
+    window.addEventListener('pdfViewerInitialized', () => {
+      console.log('pdfViewerInitialized', { initialValue });
       if ( initialValue ) {
         openPDFAsset(initialValue);
       }
@@ -68,6 +73,7 @@ function initializePDFViewer(initialValue) {
 }
 
 function initCustomElement() {
+  initializePDFViewer();
   try {
     // Custom handlers
     initKenticoAssetSelector();
