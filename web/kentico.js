@@ -70,6 +70,8 @@ function initCustomElement() {
       updateDisabled(false);
       updateSize();
 
+      console.log({ element });
+
       initializePDFViewer(element.value);
     });
     // React when the disabled state changes (e.g. when publishing the item)
