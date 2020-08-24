@@ -54,7 +54,12 @@
       left: 0;
       width: 100%;
       height: 100%;
-      opacity: 0.1;
+      opacity: 0.8;
+    }
+
+    #outerContainer {
+      position: relative;
+      z-index: 1;
     }
   </style>
 </head>
@@ -62,9 +67,9 @@
 <body>
   <div class="disabled_overlay"></div>
   <!-- Custom element HTML -->
-  <input id="editor" />
+  <input id="editor" hidden />
 
-  <div id="outerContainer">
+  <div id="outerContainer" class="container">
 
     <div id="sidebarContainer">
       <div id="toolbarSidebar">
@@ -228,15 +233,15 @@
               <span id="numPages" class="toolbarLabel"></span>
             </div>
             <div id="toolbarViewerRight">
+              <button id="kenticoOpenFile" class="toolbarButton openFile hiddenLargeView" title="Open File" tabindex="32" data-l10n-id="open_file">
+                <span data-l10n-id="open_file_label">Open</span>
+              </button>
+
               <button id="presentationMode" class="toolbarButton presentationMode hiddenLargeView" title="Switch to Presentation Mode" tabindex="31" data-l10n-id="presentation_mode">
                 <span data-l10n-id="presentation_mode_label">Presentation Mode</span>
               </button>
 
               <button hidden id="openFile" class="toolbarButton openFile hiddenLargeView" title="Open File" tabindex="32" data-l10n-id="open_file">
-                <span data-l10n-id="open_file_label">Open</span>
-              </button>
-
-              <button id="kenticoOpenFile" class="toolbarButton openFile hiddenLargeView" title="Open File" tabindex="32" data-l10n-id="open_file">
                 <span data-l10n-id="open_file_label">Open</span>
               </button>
 
