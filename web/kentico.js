@@ -36,6 +36,7 @@ function setup(width, height) {
 }
 
 function initializePDFViewer(initialValue) {
+  console.log('initializePDFViewer');
   document.addEventListener('webviewerloaded', () => {
     console.log({ PDFViewerApplication, initialValue });
   });
@@ -54,6 +55,8 @@ function initCustomElement() {
         if (element.config.width) width = element.config.width;
         if (element.config.height) height = element.config.height;
       }
+
+      console.log({ element });
 
       // Setup with initial value and disabled state
       setup(width, height);
