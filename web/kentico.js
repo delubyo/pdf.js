@@ -7,9 +7,13 @@ function onOpenFileClick(event) {
 }
 
 function onAssetSelected(pdfAsset) {
-  console.log({ pdfAsset });
-  openPDFAsset(pdfAsset.url);
-  onPDFAssetOpened(pdfAsset.url);
+  if ( pdfAsset.type === 'application/pdf' ) {
+    openPDFAsset(pdfAsset.url);
+    onPDFAssetOpened(pdfAsset.url);
+  }
+  else {
+    alert('Please select a PDF file.');
+  }
 }
 
 function initKenticoAssetSelector() {
