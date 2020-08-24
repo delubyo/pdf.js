@@ -3,7 +3,7 @@ function onOpenFileClick(event) {
 
   CustomElement.selectAssets({ fileType: 'all', allowMultiple: false })
   .then(([ asset ]) => CustomElement.getAssetDetails([ asset.id ]))
-  .then(([ assetDetails ]) => openPDFAsset(assetDetails))
+  .then(([ assetDetails ]) => openPDFAsset(assetDetails.url))
 }
 
 function initKenticoAssetSelector() {
@@ -14,8 +14,8 @@ function initKenticoAssetSelector() {
 function openPDFAsset(pdfAsset) {
   updateDisabled(true);
 
-  PDFViewerApplication.open(pdfAsset.url)
-    .then(() => onPDFAssetOpened(pdfAsset.url));
+  PDFViewerApplication.open(pdfAsset)
+    .then(() => onPDFAssetOpened(pdfAsset));
 }
 
 function onPDFAssetOpened(pdfFile) {
@@ -45,7 +45,9 @@ function setup(width, height) {
 function initializePDFViewer(initialValue) {
   console.log('initializePDFViewer');
   document.addEventListener('webviewerloaded', () => {
-    console.log({ PDFViewerApplication, initialValue });
+    if ( initialValue ) {
+      openPDFAsset(initialValue);
+    }
   });
 }
 
