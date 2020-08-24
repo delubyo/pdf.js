@@ -3,8 +3,13 @@ function onOpenFileClick(event) {
 
   CustomElement.selectAssets({ fileType: 'all', allowMultiple: false })
   .then(([ asset ]) => CustomElement.getAssetDetails([ asset.id ]))
-  .then(([ assetDetails ]) => openPDFAsset(assetDetails.url))
-  .then(pdfAsset => onPDFAssetOpened(pdfAsset));
+  .then(([ assetDetails ]) => onAssetSelected(assetDetails));
+}
+
+function onAssetSelected(pdfAsset) {
+  console.log({ pdfAsset });
+  openPDFAsset(pdfAsset.url);
+  onPDFAssetOpened(pdfAsset.url);
 }
 
 function initKenticoAssetSelector() {
